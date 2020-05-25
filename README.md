@@ -9,8 +9,8 @@ This works with Apama 10.3 or later
 
 In an Apama command prompt on Linux run:
 
-    mkdir -p $APAMA_WORK/lib
-	 g++ -std=c++11 -o $APAMA_WORK/lib/libL10NPlugin.so -I$APAMA_HOME/include -L$APAMA_HOME/lib -lapclient -shared -fPIC L10NPlugin.cpp
+	mkdir -p $APAMA_WORK/lib
+	g++ -std=c++11 -o $APAMA_WORK/lib/libL10NPlugin.so -I$APAMA_HOME/include -L$APAMA_HOME/lib -lapclient -shared -fPIC L10NPlugin.cpp
 
 
 On Windows run:
@@ -67,7 +67,7 @@ The L10N plugin and gettext allow you to specify handling for plurals, which mig
 
 Next, you will want to extract the strings from your monitor and generate translations for them. This can be done with the standard gettext tooling to extract the text and generate .po and then .mo files for the translations. To extract the text strings from the .mon file run xgettext with these arguments:
 
-	xgettext --package-name test --package-version 1.2 --default-domain test --output MyMessages.pot MyMonitor.mon -C  -k\_ -k\_N:1,2 -kgettext -kngettext:1,2 
+	xgettext --package-name test --package-version 1.2 --default-domain test --output MyMessages.pot MyMonitor.mon -C  -k_ -k_N:1,2 -kgettext -kngettext:1,2 
 
 Here the domain specifier should match the identifier you pass to init.
 
@@ -107,6 +107,6 @@ You should see it produce messages similar to these:
 
 	Configurar y esperar mensajes
 	Recibió un total de 1 mensaje, es any(A,A())
-	ecibió un total de 2 mensajes, el último es any(A,A())
-	ecibió un total de 3 mensajes, el último es any(A,A())
+	Recibió un total de 2 mensajes, el último es any(A,A())
+	Recibió un total de 3 mensajes, el último es any(A,A())
 
