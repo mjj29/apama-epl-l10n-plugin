@@ -1,0 +1,30 @@
+# Spanish translations for SampleL10N package
+# Traducciones al espanol para el paquete SampleL10N.
+# Copyright (C) 2020 THE SampleL10N'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the SampleL10N package.
+# Automatically generated, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SampleL10N 1.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-25 11:52+0100\n"
+"PO-Revision-Date: 2020-05-25 11:52+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Sample.mon:23
+msgid "Setup and waiting for messages"
+msgstr "Configurar y esperar mensajes"
+
+#: Sample.mon:30
+#, c-format
+msgid "Received a total of one message, it is %1$s"
+msgid_plural "Received a total of %2$d messages, latest is %1$s"
+msgstr[0] "Recibió un total de %2$d mensaje, es %1$s"
+msgstr[1] "ecibió un total de %2$d mensajes, el último es %1$s"

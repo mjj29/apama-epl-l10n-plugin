@@ -1,0 +1,53 @@
+/**
+ * Title:        L10N.mon
+ * Description:  L10N EPL Helper
+ * Copyright (c) 2020 Software AG, Darmstadt, Germany andor its licensors
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package com.apamax;
+
+using com.apama.correlator.Component;
+
+event L10N
+{
+	import "L10NPlugin" as plugin;
+	action init(string textdomain)
+	{
+		initFromPath(textdomain, Component.getInfo("envp")["APAMA_WORK"]+"/translations/"+textdomain);
+	}
+	action initFromProperty(string textdomain, string translationsdirprop)
+	{
+		initFromPath(textdomain, Component.getConfigProperties()[translationsdirprop]);
+	}
+	action initFromPath(string textdomain, string translationsdir)
+	{
+		plugin.init(textdomain, translationsdir);
+		self.textdomain := textdomain;
+	}
+	action gettext(string msgid) returns string
+	{
+		return plugin.gettext(textdomain, msgid);
+	}
+	action ngettext(string singular, string plural, integer n) returns string
+	{
+		return plugin.ngettext(textdomain, singular, plural, n);
+	}
+	action printf(string format, sequence<any> args) returns string
+	{
+		return plugin.printf(format, args);
+	}
+	string textdomain;
+}

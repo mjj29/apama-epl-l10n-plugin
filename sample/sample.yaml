@@ -1,0 +1,9 @@
+correlator:
+  logFile: ${PARENT_DIR}/sample.log
+  initialization:
+    list:
+      - ${APAMA_HOME}/monitors/ManagementImpl.mon
+      - ${APAMA_HOME}/monitors/Management.mon
+      - ${PARENT_DIR}/../L10N.mon
+      - ${PARENT_DIR}/Sample.mon
+      - ${PARENT_DIR}/sample.evt

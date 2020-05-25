@@ -1,0 +1,46 @@
+/*
+ * Sample to demonstrate use of the L10N gettext plugin
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using com.apamax.L10N;
+
+event A {}
+
+monitor SampleMon
+{
+	// convenience functions for L10N
+	L10N l10n;
+	action _(string s) returns string { return l10n.gettext(s); }
+	action _N(string s1, string s2, integer n) returns string { return l10n.ngettext(s1, s2, n); }
+	action printf(string f, sequence<any> a) { print l10n.printf(f, a); }
+
+	integer count;
+
+	action onload()
+	{
+		l10n.initFromProperty("SampleL10N", "SAMPLE_TRANSLATIONS");
+		startListening();
+		print _("Setup and waiting for messages");
+	}
+
+	action startListening()
+	{
+		on all any() as a {
+			count := count + 1;
+			printf(_N("Received a total of one message, it is %1$s", "Received a total of %2$d messages, latest is %1$s", count), [<any>a.toString(), count]);
+		}
+	}
+}
