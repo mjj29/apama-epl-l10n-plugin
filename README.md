@@ -67,7 +67,7 @@ The L10N plugin and gettext allow you to specify handling for plurals, which mig
 
 Next, you will want to extract the strings from your monitor and generate translations for them. This can be done with the standard gettext tooling to extract the text and generate .po and then .mo files for the translations. To extract the text strings from the .mon file run xgettext with these arguments:
 
-  xgettext --package-name test --package-version 1.2 --default-domain test --output MyMessages.pot MyMonitor.mon -C  -k\_ -k\_N:1,2 -kgettext -kngettext:1,2 
+	xgettext --package-name test --package-version 1.2 --default-domain test --output MyMessages.pot MyMonitor.mon -C  -k\_ -k\_N:1,2 -kgettext -kngettext:1,2 
 
 Here the domain specifier should match the identifier you pass to init.
 
