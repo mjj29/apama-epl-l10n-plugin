@@ -1,0 +1,53 @@
+/*
+ * Sample to demonstrate use of the L10N gettext plugin
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using com.apamax.L10N;
+
+event A {}
+
+monitor SampleMon
+{
+	// convenience functions for L10N
+	L10N l10n;
+	action _(string s) returns string { return l10n.gettext(s); }
+	action _N(string s1, string s2, integer n) returns string { return l10n.ngettext(s1, s2, n); }
+	action printf(string f, sequence<any> a) { print l10n.printf(f, a); }
+
+	action onload()
+	{
+		// 0 args
+		printf("0 arg string", new sequence<any>);
+		// 1 arg string
+		printf("1 arg string: %s", [<any>"Hello World"]);
+		// 1 arg integer
+		printf("1 arg integer: %d", [<any>42]);
+		// 1 arg float
+		printf("1 arg float: %f", [<any>3.14]);
+		// 2 args in order
+		printf("2 args: %s %s", [<any>"Hello", "World"]);
+		// 2 args out of order
+		printf("ordering: %2$s %1$f", [<any>3.14, "Hello"]);
+		// insufficient args
+		printf("insufficent args: %s %f %d", [<any>"Hello"]);
+		// too many args
+		printf("excess args: %s", [<any>"Hello", "World", "How", "are", "you"]);
+		// format specifier
+		printf("format: %.2f", [<any>float.PI]);
+		// wrong specifier
+		printf("wrong: %s %d", [<any>42, <any>"Hello"]);
+	}
+}
