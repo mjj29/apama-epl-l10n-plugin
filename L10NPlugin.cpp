@@ -12,6 +12,11 @@
  * See the License for the specific language governing permissions and limitations under the License. 
  */
 
+#if defined(__MINGW32__)
+#include <windows.h>
+#include <basetsd.h>
+#endif
+
 #define __STDC_FORMAT_MACROS 1
 #include <epl_plugin.hpp>
 #include <inttypes.h>

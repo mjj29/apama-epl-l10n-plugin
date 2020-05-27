@@ -12,17 +12,18 @@ This works with Apama 10.3 or later
 
 ## Building the plugin
 
-To build you will need an Apama installation and a copy of the Gettext libraries and utilities. Apama can be downloaded from [Apama Community](http://www.apamacommunity.com). Gettext is normally installed by default on all major Linux distributions. If you are using a thin base image or similar you may need to install the relevant packages first, which can be found in the packages `gettext` and `libc6-dev` on Debian-based distributions and the `gettext` and `glibc-headers` packages on Redhat-based distributions. Windows binaries can be downloaded from [this site](https://mlocati.github.io/articles/gettext-iconv-windows.html).
+To build you will need an Apama installation and a copy of the Gettext libraries and utilities. Apama can be downloaded from [Apama Community](http://www.apamacommunity.com). Gettext is normally installed by default on all major Linux distributions. If you are using a thin base image or similar you may need to install the relevant packages first, which can be found in the packages `gettext`, `libboost-all-dev` and `libc6-dev` on Debian-based distributions and the `gettext`, `boost-devel` and `glibc-headers` packages on Redhat-based distributions. Windows binaries can be downloaded from [gettext](https://mlocati.github.io/articles/gettext-iconv-windows.html), [libintl](https://sourceforge.net/projects/gnuwin32/), [boost](https://sourceforge.net/projects/boost/) along with [mingw g++](https://sourceforge.net/projects/mingw-w64/).
 
 In an Apama command prompt on Linux run:
 
 	mkdir -p $APAMA_WORK/lib
 	g++ -std=c++11 -o $APAMA_WORK/lib/libL10NPlugin.so -I$APAMA_HOME/include -L$APAMA_HOME/lib -lapclient -shared -fPIC L10NPlugin.cpp
 
-
 On Windows run:
 
-	g++ -std=c++11 -o %APAMA_WORK%\lib\L10NPlugin.dll -I%APAMA_HOME%\include -L%APAMA_HOME%\lib -lapclient -shared L10NPlugin.cpp
+	 g++ -std=c++11 -o %APAMA_WORK%\lib\L10NPlugin.dll -shared L10NPlugin.cpp -I%APAMA_HOME%\include -I%BOOST_INCLUDE% -I%INTL_INCLUDE% -L%APAMA_HOME%\lib -L%INTL_LIB% -llibintl -lapclient
+
+Set the `BOOST_INCLUDE`, `INTL_INCLUDE` and `INTL_LIB` environment variables to the location they were installed.
 
 ## Running tests
 
