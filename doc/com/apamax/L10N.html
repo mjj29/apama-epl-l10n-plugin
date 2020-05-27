@@ -1,0 +1,218 @@
+<HTML><!-- saved from url=(0014)about:internet -->
+
+
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>L10N</TITLE>
+<META NAME="keywords" CONTENT="L10N&nbsp;event">
+<LINK REL="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+<SCRIPT type="text/javascript">function windowTitle()
+          {
+          parent.document.title="L10N";
+          }
+          </SCRIPT>
+<NOSCRIPT></NOSCRIPT>
+</HEAD>
+<BODY BGCOLOR="white" onload="windowTitle();">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/L10N.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="L10N.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1">com.apamax</FONT>
+<BR>Event L10N</H2>
+<HR>Event wrapper for doing translation / localization of EPL applications.<br>
+<br> It's recommended that you import it into each monitor or event you use it in with:<br>
+<br> <pre><br>	L10N l10n;<br>	action _(string message) returns string { return l10n.gettext(message); }<br>	action _N(string singular, string plural, integer n) returns string { return l10n.ngettext(singular, plural, n); }<br></pre> Use the convenience functions whenever you want a translated string, eg:<br>
+<br> <pre><br>	send Reply(l10n.printf(_("Unfortunately this didn't work for %1$s because of %1$s"), input, error)) to "output";<br></pre> The L10N instance must be initialized to define the text domain and the location of the translations before use.<br>
+<br> The locale to translate to is selected from the LANGUAGE environment variable.<HR>
+<A NAME="action_summary"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2"><B>Action summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#gettext()">gettext</A></B>(string&nbsp;msgid)</CODE>
+<br>
+<br>Return the localized string in the appropriate language, or msgid unchanged if a translation cannot be found.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;void</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#init()">init</A></B>(string&nbsp;textdomain)</CODE>
+<br>
+<br>Initialize this L10N instance for a particular textdomain using the default location for translations.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;void</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#initFromPath()">initFromPath</A></B>(string&nbsp;textdomain,&nbsp;string&nbsp;translationsdir)</CODE>
+<br>
+<br>Initialize this L10N instance for a particular textdomain, reading the location of translations from an explicit path</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;void</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#initFromProperty()">initFromProperty</A></B>(string&nbsp;textdomain,&nbsp;string&nbsp;translationsdirprop)</CODE>
+<br>
+<br>Initialize this L10N instance for a particular textdomain, reading the location of translations from a correlator property variable.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#ngettext()">ngettext</A></B>(string&nbsp;singular,&nbsp;string&nbsp;plural,&nbsp;integer&nbsp;n)</CODE>
+<br>
+<br>Return the localized string in the localized language with singular/plural selected based on a runtime parameter. If no translation is found the appropriate input parameter is returned.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="L10N.html#printf()">printf</A></B>(string&nbsp;format,&nbsp;sequence&lt;any&gt;&nbsp;args)</CODE>
+<br>
+<br>Use a printf-style format string to render the sequence of arguments.</TD>
+</TR>
+</TABLE>&nbsp;<A NAME="action_detail"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2"><B>Action detail</B></FONT></TH>
+</TR>
+</TABLE>
+<A NAME="gettext()"></A>
+<H3>gettext</H3>
+<PRE>string&nbsp;<B>gettext</B>(string&nbsp;msgid)</PRE>Return the localized string in the appropriate language, or msgid unchanged if a translation cannot be found.<br>
+<br> Normally this will be aliased to _ by a convenience function.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>msgid</tt>&nbsp;-&nbsp;The string to translate in the input language (usually English).</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>The translated string, or the input string if a translation is not found.</DD>
+</DL>
+<HR>
+<A NAME="init()"></A>
+<H3>init</H3>
+<PRE>void&nbsp;<B>init</B>(string&nbsp;textdomain)</PRE>Initialize this L10N instance for a particular textdomain using the default location for translations.<br>
+<br> The default translation location is APAMA_WORK/translations/textdomain/<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>textdomain</tt>&nbsp;-&nbsp;A unique string to locate the translations for this project</DD>
+</DL>
+<HR>
+<A NAME="initFromPath()"></A>
+<H3>initFromPath</H3>
+<PRE>void&nbsp;<B>initFromPath</B>(string&nbsp;textdomain,&nbsp;string&nbsp;translationsdir)</PRE>Initialize this L10N instance for a particular textdomain, reading the location of translations from an explicit path<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>textdomain</tt>&nbsp;-&nbsp;A unique string to locate the translations for this project.</DD>
+<DD>
+<tt>translationsdir</tt>&nbsp;-&nbsp;The path to the translations.</DD>
+</DL>
+<HR>
+<A NAME="initFromProperty()"></A>
+<H3>initFromProperty</H3>
+<PRE>void&nbsp;<B>initFromProperty</B>(string&nbsp;textdomain,&nbsp;string&nbsp;translationsdirprop)</PRE>Initialize this L10N instance for a particular textdomain, reading the location of translations from a correlator property variable.<br>
+<br> Property values can be specified from a .properties file or with -D on the correlator command line.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>textdomain</tt>&nbsp;-&nbsp;A unique string to locate the translations for this project.</DD>
+<DD>
+<tt>translationsdirprop</tt>&nbsp;-&nbsp;The name of a correlator configuration property which contains a path to the translations.</DD>
+</DL>
+<HR>
+<A NAME="ngettext()"></A>
+<H3>ngettext</H3>
+<PRE>string&nbsp;<B>ngettext</B>(string&nbsp;singular,&nbsp;string&nbsp;plural,&nbsp;integer&nbsp;n)</PRE>Return the localized string in the localized language with singular/plural selected based on a runtime parameter. If no translation is found the appropriate input parameter is returned.<br>
+<br> Normally this will be aliased to _N by a convenience function.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>singular</tt>&nbsp;-&nbsp;The string to translate in the input language for n=1.</DD>
+<DD>
+<tt>plural</tt>&nbsp;-&nbsp;The string to translate in the input language for n!1.</DD>
+<DD>
+<tt>n</tt>&nbsp;-&nbsp;The number to use to determine if we should use the singular or plural translation.</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>The translated string, or the input string if a translation is not found.</DD>
+</DL>
+<HR>
+<A NAME="printf()"></A>
+<H3>printf</H3>
+<PRE>string&nbsp;<B>printf</B>(string&nbsp;format,&nbsp;sequence&lt;any&gt;&nbsp;args)</PRE>Use a printf-style format string to render the sequence of arguments.<br>
+<br> Often used in combination with the gettext and ngettext functions to insert parameters which might be in different locations in different translations. For example:<br>
+<br> <pre><br>log l10n.printf(_N("Succesfully processed one %1$s", "Succesfully processed %2$d %1$ss", count), [<any>type, count]) at INFO;<br></pre> Notes: <ul> <li>Supports positional parameter notation of printf</li> <li>Excess parameters will be ignored to allow for varying number of arguments in strings</li> <li>Insufficient parameters will leave later ones unreplaced</li> <li>Type is taken from the actual type of the argument passed in rather than the format string, however format annotations are honoured</li> </ul><DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>format</tt>&nbsp;-&nbsp;A printf-style format string.</DD>
+<DD>
+<tt>args</tt>&nbsp;-&nbsp;A sequence<any> of all the arguments to format into the format string</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>The string with the result substituted in</DD>
+</DL>
+<HR>
+<HR>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/L10N.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="L10N.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
