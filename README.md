@@ -1,11 +1,18 @@
 # EPL L10NPlugin
+
 Apama EPL Plugin for translating messages using GNU gettext
+
+## GNU Gettext
+
+Gettext is an integrated set of tools and libraries for translating strings within code and displaying translations to users based on their configured locale. More information can be found on [their website](https://www.gnu.org/software/gettext/) and the [manual for the Gettext utilities](https://www.gnu.org/software/gettext/manual/html_node/index.html)
 
 ## Supported Apama version
 
 This works with Apama 10.3 or later
 
 ## Building the plugin
+
+To build you will need an Apama installation and a copy of the Gettext libraries and utilities. Apama can be downloaded from [Apama Community](http://www.apamacommunity.com). Gettext is normally installed by default on all major Linux distributions. If you are using a thin base image or similar you may need to install the relevant packages first, which can be found in the packages `gettext` and `libc6-dev` on Debian-based distributions and the `gettext` and `glibc-headers` packages on Redhat-based distributions. Windows binaries can be downloaded from [this site](https://mlocati.github.io/articles/gettext-iconv-windows.html).
 
 In an Apama command prompt on Linux run:
 
@@ -15,13 +22,13 @@ In an Apama command prompt on Linux run:
 
 On Windows run:
 
-    g++ -std=c++11 -o %APAMA_WORK%\lib\L10NPlugin.dll -I%APAMA_HOME%\include -L%APAMA_HOME%\lib -lapclient -shared L10NPlugin.cpp
+	g++ -std=c++11 -o %APAMA_WORK%\lib\L10NPlugin.dll -I%APAMA_HOME%\include -L%APAMA_HOME%\lib -lapclient -shared L10NPlugin.cpp
 
 ## Running tests
 
 To run the tests for the plugin you will need to use an Apama command prompt to run the tests from within the tests directory:
 
-    pysys run
+	pysys run
 
 ## Using the L10NPlugin
 
@@ -60,7 +67,7 @@ You can then use these functions to write translatable strings:
 	}
 	on all MyEvent() as me {
 			count := count + 1;
-			printf(_N("Received a total of one message, it is %1$s", "Received a total of %2$d messages, latest is %1$s", count), [<any>a.toString(), count]);
+			log printf(_N("Received a total of one message, it is %1$s", "Received a total of %2$d messages, latest is %1$s", count), [<any>me.toString(), count]);
 	}
 
 The L10N plugin and gettext allow you to specify handling for plurals, which might be treated very differently in different languages with the use of the ngettext function, here aliased to \_N for convenience.
@@ -95,9 +102,9 @@ A simple end-to-end sample is provided in the sample folder. To run the sample i
 You should see it produce messages similar to these:
 
 	Setup and waiting for messages
-	Received a total of one message, it is any(A,A())
-	Received a total of 2 messages, latest is any(A,A())
-	Received a total of 3 messages, latest is any(A,A())
+	Received a total of one message, it is EventOne
+	Received a total of 2 messages, latest is EventTwo
+	Received a total of 3 messages, latest is EventThree
 
 To run the sample in Spanish to see the translations, run the following from an Apama command prompt:
 
@@ -106,7 +113,7 @@ To run the sample in Spanish to see the translations, run the following from an 
 You should see it produce messages similar to these:
 
 	Configurar y esperar mensajes
-	Recibió un total de 1 mensaje, es any(A,A())
-	Recibió un total de 2 mensajes, el último es any(A,A())
-	Recibió un total de 3 mensajes, el último es any(A,A())
+	Recibió un total de 1 mensaje, es EventOne
+	Recibió un total de 2 mensajes, el último es EventTwo
+	Recibió un total de 3 mensajes, el último es EventThree
 

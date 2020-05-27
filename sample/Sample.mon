@@ -14,7 +14,10 @@
 
 using com.apamax.L10N;
 
-event A {}
+event A 
+{
+	string message;
+}
 
 monitor SampleMon
 {
@@ -35,9 +38,9 @@ monitor SampleMon
 
 	action startListening()
 	{
-		on all any() as a {
+		on all A() as a {
 			count := count + 1;
-			printf(_N("Received a total of one message, it is %1$s", "Received a total of %2$d messages, latest is %1$s", count), [<any>a.toString(), count]);
+			printf(_N("Received a total of one message, it is %1$s", "Received a total of %2$d messages, latest is %1$s", count), [<any>a.message, count]);
 		}
 	}
 }
