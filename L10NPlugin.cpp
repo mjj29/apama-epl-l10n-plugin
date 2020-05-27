@@ -44,6 +44,7 @@ public:
 	{
 		setlocale(LC_ALL, "");
 		bindtextdomain(textdomain, translationsdir);
+		bind_textdomain_codeset(textdomain, "utf8");
 	}
 	const char *ngettext(const char *textdomain, const char *msgid1, const char *msgid2, int64_t n)
 	{
