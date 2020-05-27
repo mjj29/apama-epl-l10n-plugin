@@ -32,6 +32,8 @@ To run the tests for the plugin you will need to use an Apama command prompt to 
 
 ## Using the L10NPlugin
 
+The [API documentation](https://mjj29.github.io/apama-epl-l10n-plugin/doc/) for the L10N plugin contains descriptions for the API for all the available methods.
+
 To use the L10NPlugin you must first inject L10N.mon, import it into your monitor:
 
 	using com.apamax.L10N;
